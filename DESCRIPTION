@@ -1,0 +1,44 @@
+Package: HrdDetective
+Type: Package
+Title: Detect HRD in Human Cancer Cells
+Version: 0.1.0
+Author: Meng Li
+Maintainer: Meng Li <limeng49631@aliyun.com>
+Description: This package implements an algorithm based on PELT algorithm and Sequenza statistical model for detecting HRD (Homologous Recombination Deficiency) in human cancer cells.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+  R (>= 4.0.0),
+  Rcpp (>= 1.0.0),
+  plyr,
+  dplyr,
+  iotools,
+  readr,
+  tidyr,
+  slider,
+  reshape2,
+  callr,
+  copynumber,
+  squash,
+  ggplot2 (>= 3.4.0),
+  stringr
+Imports:
+  Rsamtools,
+  GenomicAlignments,
+  Biostrings,
+  GenomicRanges,
+  rtracklayer,
+  BiocParallel,
+  methods
+Suggests:
+  testthat (>= 3.0.0),
+  knitr,
+  rmarkdown,
+  BiocStyle,
+  pheatmap,
+  gridExtra,
+  cowplot
+LinkingTo: Rcpp
+SystemRequirements: C++11
+RoxygenNote: 7.3.3
+NeedsCompilation: yes
