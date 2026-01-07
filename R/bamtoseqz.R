@@ -20,6 +20,8 @@
 #' @param gc_window Size of the window (in bases) for GC-content calculation.
 #'   The actual window is `2 * gc_window + 1`. Default is 50 (±250 => 501 bp).
 #' @param output_file Path to the output seqz file. Default is "output.seqz".
+#' @param chr chromosome.
+#'   Default is NULL.
 #'
 #' @return Invisibly returns the path to the output seqz file.
 #'   The function primarily writes output to the specified file.
@@ -88,7 +90,8 @@ bam2seqz_r_snps <- function(
     min_af = 0.25,
     max_af = 0.75,
     gc_window = 50,  # ±250 => 501 bp
-    output_file = "output.seqz"
+    output_file = "output.seqz",
+    chr=NULL
 ) {
 
   if (is.null(bsgenome) && is.null(genome_fasta)) {
@@ -117,9 +120,12 @@ bam2seqz_r_snps <- function(
   #   min_nucleotide_depth=10,
   #   max_depth = 10000
   # )
-  
-  normal_pile <- pileup_whole_bam(normal_bam, min_depth=min_depth, min_af=min_af );
-  
+  if(!is.null(chr)){
+    normal_pile <- pileup_bam_from_chr(normal_bam, chr=chr, min_depth=min_depth, min_af=min_af );
+  }else{
+    normal_pile <- pileup_whole_bam(normal_bam, min_depth=min_depth, min_af=min_af );
+    
+  }
   # 假设 normal_pile 是 pileup() 的结果
   df_norm_long <- as.data.frame(normal_pile)
 
@@ -227,7 +233,14 @@ bam2seqz_r_snps <- function(
   
   # === Step 4: Extract tumor depth and BAF at these SNP positions ===
   cat("Extracting tumor pileup at SNP sites...\n")
-  tumor_pile <- pileup_whole_bam(tumor_bam,min_depth,min_af );
+  
+  if(!is.null(chr)){
+    tumor_pile <- pileup_bam_from_chr(tumor_bam, chr=chr, min_depth=min_depth, min_af=min_af  );
+  }else{
+    
+    tumor_pile <- pileup_whole_bam(tumor_bam, min_depth=min_depth, min_af=min_af  );
+    
+  }
   #df_tumor <- as.data.frame(tumor_pile)
   #df_tumor$total_depth <- rowSums(df_tumor[, bases], na.rm = TRUE)
   

@@ -340,6 +340,8 @@ create_png_html_report <- function(seg.tab, best_ploidy, best_cellularity,
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HRD Analysis Report (PNG Version)</title>
+<link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/48/000000/dna-helix.png">
+<link rel="shortcut icon" type="image/x-icon" href="https://img.icons8.com/color/48/000000/dna-helix.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {

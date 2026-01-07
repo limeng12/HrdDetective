@@ -322,6 +322,74 @@ pileup_whole_bam <- function(bam_file,verbose=TRUE, ...) {
   return(final_result)
 }
 
+
+pileup_bam_from_chr <- function(bam_file,chr,verbose=TRUE, ...) {
+  if (verbose) {
+    message("为整个BAM文件生成pileup...")
+    message("这可能需要一些时间，取决于BAM文件大小")
+  }
+  
+  # 获取所有染色体信息
+  bam_header <- Rsamtools::scanBamHeader(bam_file)
+  chromosomes <- names(bam_header[[1]]$targets)
+  
+  if (verbose) {
+    message("找到 ", length(chromosomes), " 条染色体")
+  }
+  
+  # 分染色体处理，避免内存溢出
+  all_results <- list()
+  
+  for (chr in chr) {
+    if (verbose) {
+      message("\n处理染色体: ", chr)
+    }
+    
+    # 创建染色体区域
+    chr_region <- paste0(chr, ":1-", bam_header[[1]]$targets[chr])
+    
+    # 处理该染色体
+    chr_result <- pileup_from_bam(
+      bam_file = bam_file,
+      region = chr_region,
+      verbose = FALSE,  # 子函数不显示详细信息
+      ...
+    )
+    
+    if (nrow(chr_result) > 0) {
+      all_results[[chr]] <- chr_result
+    }
+    
+    # 可选：每处理完一条染色体后保存中间结果
+    if (exists("save_intermediate") && save_intermediate) {
+      saveRDS(chr_result, paste0("pileup_", chr, ".rds"))
+    }
+  }
+  
+  # 合并所有结果
+  if (length(all_results) == 0) {
+    return(data.frame(
+      seqnames = character(0),
+      pos = integer(0),
+      strand = character(0),
+      nucleotide = character(0),
+      count = integer(0)
+    ))
+  }
+  
+  final_result <- do.call(rbind, all_results)
+  rownames(final_result) <- NULL
+  
+  if (verbose) {
+    message("\n=== 全基因组pileup完成 ===")
+    message("总行数: ", nrow(final_result))
+    message("染色体数: ", length(unique(final_result$seqnames)))
+  }
+  
+  return(final_result)
+}
+
+
 # 使用示例
 example_usage <- function() {
   # 编译C++代码

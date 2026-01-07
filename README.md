@@ -29,11 +29,11 @@ devtools::install_github("limeng12/HrdDetective")
 - **R (>= 4.0.0)**
 - **Rcpp (>= 1.0.0)**
 - **plyr, dplyr, iotools, readr, tidyr**
-- **slider, reshape2, callr, copynumber, squash**
+- **slider, reshape2, callr, squash**
 - **ggplot2 (>= 3.4.0), stringr**
 
 ### Bioconductor Packages
-- **Rsamtools, GenomicAlignments, Biostrings**
+- **Rsamtools, GenomicAlignments, Biostrings, copynumber**
 - **GenomicRanges, rtracklayer, BiocParallel**
 
 ### Suggested Packages
@@ -49,22 +49,24 @@ devtools::install_github("limeng12/HrdDetective")
 ```r
 # Install packages
 # Install from CRAN
-install.packages(c(
-  "Rcpp", "plyr", "dplyr", "iotools", "readr", "tidyr",
-  "slider", "reshape2", "callr", "copynumber", "squash",
-  "ggplot2", "stringr", "testthat", "knitr", "rmarkdown",
-  "pheatmap", "gridExtra", "cowplot"
-))
+conda create -n r_analysis -c conda-forge -c bioconda \
+r-base=4.4 \
+r-xml r-rcurl r-rcpp r-plyr r-dplyr r-iotools r-readr r-tidyr r-devtools \
+r-slider r-reshape2 r-callr r-squash r-ggplot2 r-stringr \
+r-testthat r-knitr r-rmarkdown r-pheatmap r-gridextra r-cowplot \
+bioconductor-rsamtools bioconductor-genomicalignments \
+bioconductor-biostrings bioconductor-genomicranges \
+bioconductor-rtracklayer bioconductor-biocparallel \
+bioconductor-biocstyle bioconductor-copynumber \
+-y
 
-# Install from Bioconductor
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+conda activate r_analysis
 
-BiocManager::install(c(
-  "Rsamtools", "GenomicAlignments", "Biostrings",
-  "GenomicRanges", "rtracklayer", "BiocParallel",
-  "BiocStyle"
-))
+R
+
+BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
+
+
 
 # Load the package
 library(HrdDetective)
@@ -103,11 +105,7 @@ html_file <- generate_png_hrd_report(
   output_dir_name = t_output_dir_name
 )
 
-library(scarHRD);
 
-scar_result<-scar_score(paste0(t_output_dir_name, "/scarHRD_input_test.tsv"),
-                      reference = "grch38",
-                      seqz=FALSE, outputdir=t_output_dir_name);
 ```
 
 ## Output Files

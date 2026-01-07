@@ -67,7 +67,7 @@ IntegerVector seq_int(int start, int end) {
 }
 
 // 解析 CIGAR 字符串
-std::vector<std::pair<int, char>> parse_cigar_string(const std::string& cigar_str) {
+inline std::vector<std::pair<int, char>> parse_cigar_string(const std::string& cigar_str) {
   std::vector<std::pair<int, char>> result;
   std::string num_str;
   for (char c : cigar_str) {
@@ -85,7 +85,7 @@ std::vector<std::pair<int, char>> parse_cigar_string(const std::string& cigar_st
 }
 
 // 返回 (ref_position, query_index) 的配对
-std::vector<std::pair<int, int>> get_ref_query_pairs(int start_pos, const std::string& cigar_str) {
+inline std::vector<std::pair<int, int>> get_ref_query_pairs(int start_pos, const std::string& cigar_str) {
   std::vector<std::pair<int, int>> pairs;
   auto cigar_ops = parse_cigar_string(cigar_str);
   int ref_pos = start_pos;
@@ -122,7 +122,7 @@ std::vector<std::pair<int, int>> get_ref_query_pairs(int start_pos, const std::s
 }
 
 // Helper: parse CIGAR string to get reference span
-int cigar_ref_length(const std::string& cigar) {
+inline int cigar_ref_length(const std::string& cigar) {
   int ref_len = 0;
   std::string number = "";
   for (char c : cigar) {
@@ -142,7 +142,7 @@ int cigar_ref_length(const std::string& cigar) {
 }
 
 
-// [[Rcpp::export]]
+// [[Rcpp::export(rng=false)]]
 List pileup_manual_vectors(
     CharacterVector seqnames,
     IntegerVector positions,
