@@ -65,6 +65,7 @@ conda activate r_analysis
 R
 
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
+devtools::install_github("limeng12/HrdDetective")
 
 
 
