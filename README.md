@@ -65,6 +65,7 @@ conda activate r_hrd
 R
 # options(BioC_mirror="https://mirrors.westlake.edu.cn/bioconductor")
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
+install.packages("patchwork")
 devtools::install_github("limeng12/HrdDetective")
 
 
