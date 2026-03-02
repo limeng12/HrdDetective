@@ -49,7 +49,7 @@ devtools::install_github("limeng12/HrdDetective")
 ```r
 # Install packages
 # Install from CRAN
-conda create -n r_analysis -c conda-forge -c bioconda \
+conda create -n r_hrd -c conda-forge -c bioconda \
 r-base=4.4 \
 r-xml r-rcurl r-rcpp r-plyr r-dplyr r-iotools r-readr r-tidyr r-devtools \
 r-slider r-reshape2 r-callr r-squash r-ggplot2 r-stringr \
@@ -60,10 +60,10 @@ bioconductor-rtracklayer bioconductor-biocparallel \
 bioconductor-biocstyle bioconductor-copynumber \
 -y
 
-conda activate r_analysis
+conda activate r_hrd
 
 R
-
+# options(BioC_mirror="https://mirrors.westlake.edu.cn/bioconductor")
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
 devtools::install_github("limeng12/HrdDetective")
 
