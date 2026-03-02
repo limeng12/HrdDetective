@@ -40,6 +40,8 @@ get_best_seg<-function(t_df_data,
     
     if(is.null(index) || is.na(index) || length(index)!=1 ){
       print(cp)
+      print(cp_final)
+      
       print(index)
       
     }
