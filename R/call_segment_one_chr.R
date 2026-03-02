@@ -33,9 +33,17 @@ get_best_seg<-function(t_df_data,
   fv<-best_seg$fv;
   cp_final<-c(length(cp));
   index<-length(cp);
+  
   while(index!=1){
     cp_final<-c(cp_final,cp[index]);
     index<-cp[index];
+    
+    if(is.null(index) || is.na(index) || length(index)!=1 ){
+      print(cp)
+      print(index)
+      
+    }
+    
   }
   the_dis_threshold<-0.03*max(t_seg_pos);
   if(the_dis_threshold<5*1e6){
