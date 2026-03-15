@@ -1,4 +1,3 @@
-``` markdown
 # HrdDetective
 
 ## Overview
@@ -7,14 +6,12 @@
 
 The package performs:
 
-- **BAM to seqz conversion** – extracts heterozygous SNPs and computes depth/BAF
-- **Copy number segmentation** – identifies genomic segments with uniform copy number using PELT algorithm
-- **Model optimization** – estimates tumor purity (cellularity) and ploidy based on Sequenza statistical model
-- **Visualization** – generates publication-ready plots of segments and model fits
+-   **BAM to seqz conversion** – extracts heterozygous SNPs and computes depth/BAF
+-   **Copy number segmentation** – identifies genomic segments with uniform copy number using PELT algorithm
+-   **Model optimization** – estimates tumor purity (cellularity) and ploidy based on Sequenza statistical model
+-   **Visualization** – generates publication-ready plots of segments and model fits
 
-```
 ## Installation
-
 
 ``` r
 # Install from GitHub (if available)
@@ -39,16 +36,6 @@ devtools::install_github("limeng12/HrdDetective")
 
 -   **Rsamtools, GenomicAlignments, Biostrings, copynumber**
 -   **GenomicRanges, rtracklayer, BiocParallel**
-
-### Suggested Packages
-
--   **testthat (\>= 3.0.0), knitr, rmarkdown, BiocStyle**
--   **pheatmap, gridExtra, cowplot**
-
-### System Requirements
-
--   **C++11 compiler**
--   **samtools** (optional, for BAM indexing)
 
 ## Quick Start
 
@@ -114,12 +101,14 @@ html_file <- generate_png_hrd_report(
 )
 ```
 
+![](man/figures/model_fit_contour.png) ![](man/figures/model_fit_heatmap.png)
+
 ## Output Files
 
 The analysis generates the following output files:
 
 | File | Description |
-|-----------------------|------------------------------------------------|
+|------------------------------------|------------------------------------|
 | `raw_segments.txt` | Copy number segments with A/B allele counts |
 | `scarHRD_input_test.tsv` | Formatted input for HRD scoring |
 | `HRD_re.txt` | Estimated cellularity, ploidy, and sample/tumor ploidy |
@@ -147,7 +136,7 @@ The analysis generates the following output files:
 ### bam2seqz_r_snps()
 
 | Parameter | Default | Description |
-|------------------------|--------------------|----------------------------|
+|------------------------|------------------------|------------------------|
 | `normal_bam` | Required | Path to normal (germline) sample BAM file |
 | `tumor_bam` | Required | Path to tumor sample BAM file |
 | `genome_fasta` | NULL | Path to reference genome FASTA file |
@@ -185,18 +174,14 @@ These files are located in the `extdata` directory and can be accessed using `sy
 ## Performance
 
 -   **Parallel processing** for model optimization
--   **Efficient C++ backend** for pileup extraction
--   **Memory-efficient** chromosome-wise processing
--   **Scalable** for whole-genome analysis
+-   **Efficient C++ backend** for pileup extraction model optimization
 
 ## Troubleshooting
 
 ### Common Issues
 
 1.  **BAM file errors**: Ensure BAM files are sorted and indexed (.bai files present)
-2.  **Memory issues**: Process chromosomes individually for large genomes
-3.  **No heterozygous SNPs**: Adjust `min_af` and `max_af` parameters
-4.  **Compilation errors**: Ensure C++11 compiler is available
+2.  **Compilation errors**: Ensure C++11 compiler is available
 
 ## Citation
 
