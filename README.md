@@ -1,4 +1,4 @@
-```markdown
+``` markdown
 # HrdDetective
 
 ## Overview
@@ -12,9 +12,11 @@ The package performs:
 - **Model optimization** – estimates tumor purity (cellularity) and ploidy based on Sequenza statistical model
 - **Visualization** – generates publication-ready plots of segments and model fits
 
+```
 ## Installation
 
-```r
+
+``` r
 # Install from GitHub (if available)
 # devtools::install_github("limeng12/HrdDetective")
 
@@ -26,27 +28,31 @@ devtools::install_github("limeng12/HrdDetective")
 ## Dependencies
 
 ### Required R Packages
-- **R (>= 4.0.0)**
-- **Rcpp (>= 1.0.0)**
-- **plyr, dplyr, iotools, readr, tidyr**
-- **slider, reshape2, callr, squash**
-- **ggplot2 (>= 3.4.0), stringr**
+
+-   **R (\>= 4.0.0)**
+-   **Rcpp (\>= 1.0.0)**
+-   **plyr, dplyr, iotools, readr, tidyr**
+-   **slider, reshape2, callr, squash**
+-   **ggplot2 (\>= 3.4.0), stringr**
 
 ### Bioconductor Packages
-- **Rsamtools, GenomicAlignments, Biostrings, copynumber**
-- **GenomicRanges, rtracklayer, BiocParallel**
+
+-   **Rsamtools, GenomicAlignments, Biostrings, copynumber**
+-   **GenomicRanges, rtracklayer, BiocParallel**
 
 ### Suggested Packages
-- **testthat (>= 3.0.0), knitr, rmarkdown, BiocStyle**
-- **pheatmap, gridExtra, cowplot**
+
+-   **testthat (\>= 3.0.0), knitr, rmarkdown, BiocStyle**
+-   **pheatmap, gridExtra, cowplot**
 
 ### System Requirements
-- **C++11 compiler**
-- **samtools** (optional, for BAM indexing)
+
+-   **C++11 compiler**
+-   **samtools** (optional, for BAM indexing)
 
 ## Quick Start
 
-```r
+``` r
 # Install packages
 # Install from CRAN
 conda create -n r_hrd -c conda-forge -c bioconda \
@@ -106,8 +112,6 @@ html_file <- generate_png_hrd_report(
   best_cellularity = seg_obj$best_cellularity,
   output_dir_name = t_output_dir_name
 )
-
-
 ```
 
 ## Output Files
@@ -115,7 +119,7 @@ html_file <- generate_png_hrd_report(
 The analysis generates the following output files:
 
 | File | Description |
-|------|-------------|
+|-----------------------|------------------------------------------------|
 | `raw_segments.txt` | Copy number segments with A/B allele counts |
 | `scarHRD_input_test.tsv` | Formatted input for HRD scoring |
 | `HRD_re.txt` | Estimated cellularity, ploidy, and sample/tumor ploidy |
@@ -127,20 +131,23 @@ The analysis generates the following output files:
 ## Key Functions
 
 ### Core Functions
-- `bam2seqz_r_snps()` – Converts paired normal/tumor BAM files to seqz format using heterozygous SNPs
-- `opti_and_segs()` – Main function for copy number segmentation and model optimization
-- `generate_png_hrd_report()` – Generates all output files and visualization plots
+
+-   `bam2seqz_r_snps()` – Converts paired normal/tumor BAM files to seqz format using heterozygous SNPs
+-   `opti_and_segs()` – Main function for copy number segmentation and model optimization
+-   `generate_png_hrd_report()` – Generates all output files and visualization plots
 
 ### Supporting Functions
-- `pileup_whole_bam()` – Fast pileup extraction from BAM files (C++ backend)
-- `pileup_from_bam()` – Region-specific pileup extraction
-- `draw_model_fit()` – Contour plot of cellularity/ploidy likelihood
+
+-   `pileup_whole_bam()` – Fast pileup extraction from BAM files (C++ backend)
+-   `pileup_from_bam()` – Region-specific pileup extraction
+-   `draw_model_fit()` – Contour plot of cellularity/ploidy likelihood
 
 ## Parameters
 
 ### bam2seqz_r_snps()
+
 | Parameter | Default | Description |
-|-----------|---------|-------------|
+|------------------------|--------------------|----------------------------|
 | `normal_bam` | Required | Path to normal (germline) sample BAM file |
 | `tumor_bam` | Required | Path to tumor sample BAM file |
 | `genome_fasta` | NULL | Path to reference genome FASTA file |
@@ -152,8 +159,9 @@ The analysis generates the following output files:
 | `output_file` | "output.seqz" | Path to output seqz file |
 
 ### opti_and_segs()
+
 | Parameter | Default | Description |
-|-----------|---------|-------------|
+|----|----|----|
 | `data.file` | Required | Input seqz file path |
 | `number_of_cores` | 6 | CPU cores for parallel optimization |
 | `CNt.max` | 8 | Maximum copy number considered |
@@ -164,31 +172,31 @@ The analysis generates the following output files:
 ## Method Details
 
 ### Algorithm
-1. **Copy number segmentation** using the PELT (Pruned Exact Linear Time) algorithm
-2. **Model optimization** based on the Sequenza statistical model for estimating tumor cellularity and ploidy
+
+1.  **Copy number segmentation** using the PELT (Pruned Exact Linear Time) algorithm
+2.  **Model optimization** based on the Sequenza statistical model for estimating tumor cellularity and ploidy
 
 ## Example Data
 
-The package includes example BAM files for chromosome 1:
-- `target.chr1.normal.dedup.bam` – Normal sample BAM
-- `target.chr1.tumor.dedup.bam` – Tumor sample BAM
+The package includes example BAM files for chromosome 1: - `target.chr1.normal.dedup.bam` – Normal sample BAM - `target.chr1.tumor.dedup.bam` – Tumor sample BAM
 
 These files are located in the `extdata` directory and can be accessed using `system.file()`.
 
 ## Performance
 
-- **Parallel processing** for model optimization
-- **Efficient C++ backend** for pileup extraction
-- **Memory-efficient** chromosome-wise processing
-- **Scalable** for whole-genome analysis
+-   **Parallel processing** for model optimization
+-   **Efficient C++ backend** for pileup extraction
+-   **Memory-efficient** chromosome-wise processing
+-   **Scalable** for whole-genome analysis
 
 ## Troubleshooting
 
 ### Common Issues
-1. **BAM file errors**: Ensure BAM files are sorted and indexed (.bai files present)
-2. **Memory issues**: Process chromosomes individually for large genomes
-3. **No heterozygous SNPs**: Adjust `min_af` and `max_af` parameters
-4. **Compilation errors**: Ensure C++11 compiler is available
+
+1.  **BAM file errors**: Ensure BAM files are sorted and indexed (.bai files present)
+2.  **Memory issues**: Process chromosomes individually for large genomes
+3.  **No heterozygous SNPs**: Adjust `min_af` and `max_af` parameters
+4.  **Compilation errors**: Ensure C++11 compiler is available
 
 ## Citation
 
@@ -198,17 +206,14 @@ MIT License - see LICENSE file for details.
 
 ## Maintainer
 
-Meng Li <limeng49631@aliyun.com>
+Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com){.email}
 
 ## Acknowledgments
 
-- Built upon methods from Sequenza and PELT algorithm
-- Uses efficient C++ implementation for pileup extraction
-- Inspired by existing HRD detection tools
+-   Built upon methods from Sequenza and PELT algorithm
+-   Uses efficient C++ implementation for pileup extraction
+-   Inspired by existing HRD detection tools
 
 ## Support
 
-For bugs, feature requests, or questions:
-- Open an issue on GitHub
-- Contact: Meng Li <limeng49631@aliyun.com>
-```
+For bugs, feature requests, or questions: - Open an issue on GitHub - Contact: Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com){.email} \`\`\`
