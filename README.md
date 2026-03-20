@@ -25,17 +25,26 @@ devtools::install_github("limeng12/HrdDetective")
 ## Dependencies
 
 ### Required R Packages
+``` r
+options(BioC_mirror = "https://mirrors.westlake.edu.cn/bioconductor")
+options(repos = c(CRAN = "https://mirrors.westlake.edu.cn/CRAN/"))
 
--   **R (\>= 4.0.0)**
--   **Rcpp (\>= 1.0.0)**
--   **plyr, dplyr, iotools, readr, tidyr**
--   **slider, reshape2, callr, squash**
--   **ggplot2 (\>= 3.4.0), stringr**
-
+# CRAN 
+cran_pkgs <- c("XML", "RCurl", "Rcpp", "plyr", "dplyr", "iotools", "readr", 
+               "tidyr", "devtools", "slider", "reshape2", "callr", "squash", 
+               "ggplot2", "stringr", "testthat", "knitr", "rmarkdown", 
+               "pheatmap", "gridExtra", "cowplot")
+install.packages(cran_pkgs)
+```
+``` r
 ### Bioconductor Packages
-
--   **Rsamtools, GenomicAlignments, Biostrings, copynumber**
--   **GenomicRanges, rtracklayer, BiocParallel**
+if (!require("BiocManager")) install.packages("BiocManager")
+BiocManager::install(c("Rsamtools", "GenomicAlignments", "Biostrings", 
+                       "GenomicRanges", "rtracklayer", "BiocParallel", 
+                       "BiocStyle", "copynumber"))
+              
+devtools::install_github("igordot/copynumber")                       
+```
 
 ## Quick Start
 
@@ -59,6 +68,7 @@ R
 # options(BioC_mirror="https://mirrors.westlake.edu.cn/bioconductor")
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
 install.packages("patchwork")
+
 devtools::install_github("limeng12/HrdDetective")
 
 
@@ -101,7 +111,8 @@ html_file <- generate_png_hrd_report(
 )
 ```
 
-![](man/figures/model_fit_contour.png) ![](man/figures/model_fit_heatmap.png)
+![](man/figures/model_fit_contour.png) 
+![](man/figures/model_fit_heatmap.png)
 
 ## Output Files
 
