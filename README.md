@@ -30,7 +30,7 @@ options(BioC_mirror = "https://mirrors.westlake.edu.cn/bioconductor")
 options(repos = c(CRAN = "https://mirrors.westlake.edu.cn/CRAN/"))
 
 # CRAN 
-install.packages(c("Rcpp", "dplyr", "tidyr", "readr", "ggplot2", “iotools”，
+install.packages(c("Rcpp", "dplyr", "tidyr", "readr", "ggplot2", "iotools", 
                    "stringr", "cowplot", "devtools", "callr", "slider"))
 ```
 ``` r
@@ -54,8 +54,6 @@ conda create -n r_hrd -c conda-forge -c bioconda \
   bioconductor-genomicranges bioconductor-rsamtools bioconductor-biostrings bioconductor-rtracklayer \
   -y
 
-
-
 conda activate r_hrd
 
 R
@@ -65,7 +63,6 @@ BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
 
 devtools::install_github("igordot/copynumber")                      
 devtools::install_github("limeng12/HrdDetective")
-
 
 
 # Load the package
