@@ -38,11 +38,11 @@ get_best_seg<-function(t_df_data,
     cp_final<-c(cp_final,cp[index]);
     index<-cp[index];
     
-    if(is.null(index) || is.na(index) || length(index)!=1 ){
-      print(cp)
-      print(cp_final)
+    if(is.null(index) || length(index)!=1 || is.na(index)  ){
+      print("cp");print(cp)
+      print("cp_final");print(cp_final)
       
-      print(index)
+      print("index");print(index)
       
     }
     

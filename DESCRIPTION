@@ -10,33 +10,23 @@ Encoding: UTF-8
 Depends:
   R (>= 4.0.0),
   Rcpp (>= 1.0.0),
-  plyr,
   dplyr,
-  iotools,
   readr,
   tidyr,
+  ggplot2 (>= 3.4.0),
+  stringr,
+  iotools,
   slider,
-  reshape2,
   callr,
   copynumber,
-  squash,
-  ggplot2 (>= 3.4.0),
-  stringr
+  GenomicRanges
 Imports:
   Rsamtools,
-  GenomicAlignments,
   Biostrings,
-  GenomicRanges,
-  rtracklayer,
-  BiocParallel,
+  R6,
+  patchwork,
   methods
 Suggests:
-  testthat (>= 3.0.0),
-  knitr,
-  rmarkdown,
-  BiocStyle,
-  pheatmap,
-  gridExtra,
   cowplot
 LinkingTo: Rcpp
 SystemRequirements: C++11

@@ -30,20 +30,14 @@ options(BioC_mirror = "https://mirrors.westlake.edu.cn/bioconductor")
 options(repos = c(CRAN = "https://mirrors.westlake.edu.cn/CRAN/"))
 
 # CRAN 
-cran_pkgs <- c("XML", "RCurl", "Rcpp", "plyr", "dplyr", "iotools", "readr", 
-               "tidyr", "devtools", "slider", "reshape2", "callr", "squash", 
-               "ggplot2", "stringr", "testthat", "knitr", "rmarkdown", 
-               "pheatmap", "gridExtra", "cowplot")
-install.packages(cran_pkgs)
+install.packages(c("Rcpp", "dplyr", "tidyr", "readr", "ggplot2", “iotools”，
+                   "stringr", "cowplot", "devtools", "callr", "slider"))
 ```
 ``` r
 ### Bioconductor Packages
 if (!require("BiocManager")) install.packages("BiocManager")
-BiocManager::install(c("Rsamtools", "GenomicAlignments", "Biostrings", 
-                       "GenomicRanges", "rtracklayer", "BiocParallel", 
-                       "BiocStyle", "copynumber"))
-              
-devtools::install_github("igordot/copynumber")                       
+BiocManager::install(c("GenomicRanges", "Rsamtools", "Biostrings"))
+
 ```
 
 ## Quick Start
@@ -51,24 +45,25 @@ devtools::install_github("igordot/copynumber")
 ``` r
 # Install packages
 # Install from CRAN
+
+
 conda create -n r_hrd -c conda-forge -c bioconda \
-r-base=4.4 \
-r-xml r-rcurl r-rcpp r-plyr r-dplyr r-iotools r-readr r-tidyr r-devtools \
-r-slider r-reshape2 r-callr r-squash r-ggplot2 r-stringr \
-r-testthat r-knitr r-rmarkdown r-pheatmap r-gridextra r-cowplot \
-bioconductor-rsamtools bioconductor-genomicalignments \
-bioconductor-biostrings bioconductor-genomicranges \
-bioconductor-rtracklayer bioconductor-biocparallel \
-bioconductor-biocstyle bioconductor-copynumber \
--y
+  r-base=4.4 r-xml r-rcurl \
+  r-rcpp r-dplyr r-tidyr r-readr r-ggplot2 r-iotools \
+  r-stringr r-cowplot r-devtools r-callr r-slider \
+  bioconductor-genomicranges bioconductor-rsamtools bioconductor-biostrings bioconductor-rtracklayer \
+  -y
+
+
 
 conda activate r_hrd
 
 R
 # options(BioC_mirror="https://mirrors.westlake.edu.cn/bioconductor")
+install.packages(c("BiocManager", "patchwork") )
 BiocManager::install("BSgenome.Hsapiens.UCSC.hg38")
-install.packages("patchwork")
 
+devtools::install_github("igordot/copynumber")                      
 devtools::install_github("limeng12/HrdDetective")
 
 
