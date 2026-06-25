@@ -95,7 +95,7 @@ bam2seqz_r_snps <- function(
 ) {
 
   if (is.null(bsgenome) && is.null(genome_fasta)) {
-    stop("Provide either 'bsgenome' or 'genome_fasta'")
+    stop("Provide either 'bsgenome' or 'genome_fasta' for GC correction")
   }
 
   # === Step 1: Load genome ===
