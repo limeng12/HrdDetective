@@ -194,7 +194,7 @@ MIT License - see LICENSE file for details.
 
 ## Maintainer
 
-Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com){.email}
+Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com)
 
 ## Acknowledgments
 
@@ -204,4 +204,4 @@ Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com){.email}
 
 ## Support
 
-For bugs, feature requests, or questions: - Open an issue on GitHub - Contact: Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com){.email} \`\`\`
+For bugs, feature requests, or questions: - Open an issue on GitHub - Contact: Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com) \`\`\`
