@@ -204,4 +204,4 @@ Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com)
 
 ## Support
 
-For bugs, feature requests, or questions: - Open an issue on GitHub - Contact: Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com) \`\`\`
+For bugs, feature requests, or questions: - Open an issue on GitHub - Contact: Meng Li [limeng49631\@aliyun.com](mailto:limeng49631@aliyun.com) 
